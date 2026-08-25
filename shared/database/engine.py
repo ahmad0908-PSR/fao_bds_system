@@ -10,9 +10,18 @@ from shared.config import DATABASE_URL
 
 # check_same_thread=False is required for SQLite when used from Streamlit,
 # since Streamlit can touch the connection from different threads/reruns.
+# This is a SQLite-only quirk — Postgres doesn't need or accept it, so we
+# only pass it when DATABASE_URL is actually a SQLite URL.
+_connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+
+# pool_pre_ping avoids "server closed the connection" errors from hosted
+# Postgres providers (e.g. Neon) that close idle connections after a
+# period of inactivity — the pool checks the connection is alive before
+# reusing it, and transparently reconnects if not.
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False},
+    connect_args=_connect_args,
+    pool_pre_ping=True,
     echo=False,
 )
 
