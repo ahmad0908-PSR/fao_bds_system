@@ -1,0 +1,45 @@
+# ==========================================================
+# FAO BDS Tracking System - requirements.txt
+# Python 3.12
+# ==========================================================
+# Install with:  pip install -r requirements.txt
+# Covers BOTH Application 1 (Data Entry) and Application 2 (Dashboard)
+# ==========================================================
+
+# ---- Core Framework ----
+streamlit==1.39.0
+
+# ---- Database / ORM ----
+SQLAlchemy==2.0.35
+
+# ---- Data Handling ----
+pandas==2.2.3
+numpy==1.26.4
+
+# ---- Environment / Config ----
+python-dotenv==1.0.1
+
+# ---- Auth (simple password hashing for entry-app login) ----
+bcrypt==4.2.0
+
+# ---- Tables (App 1 search/edit lists, App 2 Progress Matrix grid) ----
+streamlit-aggrid==1.0.5
+
+# ---- Date/Validation Utilities ----
+python-dateutil==2.9.0.post0
+email-validator==2.2.0
+
+# ---- Charts (Application 2) ----
+plotly==5.24.1
+pygal==3.0.4
+
+# ---- Maps (Application 2) ----
+folium==0.17.0
+streamlit-folium==0.23.1
+
+# ---- Excel Export (Application 2) ----
+openpyxl==3.1.5
+xlsxwriter==3.2.0
+
+# ---- PDF Export (Application 2) ----
+reportlab==4.2.5
